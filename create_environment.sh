@@ -1,29 +1,25 @@
 #!/bin/bash
 
-# Create main app directory
 mkdir -p submission_reminder_app
-
-# Create subdirectories
 mkdir -p submission_reminder_app/app
 mkdir -p submission_reminder_app/config
 mkdir -p submission_reminder_app/assets
 mkdir -p submission_reminder_app/modules
 
-# Create necessary files
 touch submission_reminder_app/config/config.env
 touch submission_reminder_app/assets/submissions.txt
 touch submission_reminder_app/modules/functions.sh
 touch submission_reminder_app/app/reminder.sh
 touch submission_reminder_app/startup.sh
 
-# Populate config.env file
+cp ./submissions.txt submission_reminder_app/assets/submissions.txt
+
 cat <<EOL > submission_reminder_app/config/config.env
 # This is the config file
 ASSIGNMENT="Shell Navigation"
 DAYS_REMAINING=2
 EOL
 
-# Populate submissions.txt file
 cat <<EOL > submission_reminder_app/assets/submissions.txt
 student, assignment, submission status
 here, Shell Navigation, submitted
@@ -35,7 +31,6 @@ yvette, Shell Navigation, not submitted
 benitha, Shell Navigation, submitted
 EOL
 
-# Populate functions.sh file
 cat <<EOL > submission_reminder_app/modules/functions.sh
 #!/bin/bash
 
@@ -59,7 +54,6 @@ function check_submissions {
 }
 EOL
 
-# Populate reminder.sh file
 cat <<EOL > submission_reminder_app/app/reminder.sh
 #!/bin/bash
 
@@ -78,7 +72,6 @@ echo "--------------------------------------------"
 check_submissions \$submissions_file
 EOL
 
-# Populate startup.sh file
 cat <<EOL > submission_reminder_app/startup.sh
 #!/bin/bash
 
@@ -86,7 +79,6 @@ cat <<EOL > submission_reminder_app/startup.sh
 ./app/reminder.sh
 EOL
 
-# Make scripts executable
 chmod +x submission_reminder_app/app/reminder.sh
 chmod +x submission_reminder_app/modules/functions.sh
 chmod +x submission_reminder_app/startup.sh
